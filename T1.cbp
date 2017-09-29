@@ -38,7 +38,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Banco.h" />
-		<Unit filename="BaseHeader.h" />
 		<Unit filename="Lista.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -47,6 +46,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Livro.h" />
+		<Unit filename="Types.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
