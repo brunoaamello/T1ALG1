@@ -176,7 +176,7 @@ void operarLivro(Lista* livros, Livro* livro, Lista* alunos){
     Aluno* emprestador;
     int escolha, erro;
     char texto[100];
-    //printLivroInfoComp(aluno);
+    printLivroInfo(livro);
     printf("Escolha a operacao que deseja realizar:\n");
     printf("1) Alterar titulo.\n2) Alterar autor.\n3) Alterar editora.\n4) Alterar isbn.\n5) Alterar edicao.\n6) Alterar ano.\n7) Alterar copias.\n8) Emprestar para aluno.\n9) Devolver livro.\n10) Remover livro.\n11) Nada\n");
     do{

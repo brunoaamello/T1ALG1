@@ -106,18 +106,18 @@ void findAluno_S(Lista* alunos, char* nome){
 }
 
 void operarAluno(Lista* alunos, Aluno* aluno){
-    char texto[100];
-    int escolha, escolha_2, erro;
+    char texto[200];
+    int escolha, escolha_2, erro, i;
     printAlunoInfo(aluno);
     printf("Escolha a operacao que deseja realizar:\n");
-    printf("1) Alterar nome.\n2) Alterar email.\n3) Alterar numero USP.\n4) Alterar telefone.\n5) Remover aluno.\n6) Remover de uma lista de espera.\n7) Nada.\n");
+    printf("1) Alterar nome.\n2) Alterar email.\n3) Alterar numero USP.\n4) Alterar telefone.\n5) Remover aluno.\n6) Remover de uma lista de espera.\n7) Retirar Mensagens.\n8) Nada.\n");
     do{
         fflush(stdin);
         scanf("%d", &escolha);
-        if(escolha<1 || escolha>7){
+        if(escolha<1 || escolha>8){
             printf("Por favor digite um valor entre os mostrados\n");
         }
-    }while(escolha<1 || escolha>7);
+    }while(escolha<1 || escolha>8);
     switch(escolha){
     case 1:
         printf("Digite o novo nome: ");
@@ -150,7 +150,7 @@ void operarAluno(Lista* alunos, Aluno* aluno){
             printf("Nao ha livros a serem removidos.\n");
             break;
         }
-        printf("Digite o numero do livro: ");
+        printf("Digite o ISBN do livro: ");
         do{
             fflush(stdin);
             scanf("%d", &escolha_2);
@@ -161,6 +161,15 @@ void operarAluno(Lista* alunos, Aluno* aluno){
         removerLivroAluno(atLista(&aluno->livros, escolha-1, &erro), aluno);
         break;
     case 7:
+        i=1;
+        while(aluno->mensagensPilha.tamanho>0){
+            strcpy(texto, popLista(&aluno->mensagensPilha, &erro));
+            printf("%d)\n%s\n", i, texto);
+            i++;
+        }
+        printf("Fim da impressao das mensagens.\n");
+        break;
+    case 8:
         break;
     default:
         break;
