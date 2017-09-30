@@ -33,7 +33,7 @@ typedef struct Aluno{
 
 //##############LIVRO###################
 typedef struct {
-    char titulo[50], autor[50], editora[30];
+    char titulo[100], autor[100], editora[100];
     uint64 isbn;
     int ano, edicao, copias, disponiveis;
     Lista fila;

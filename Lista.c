@@ -27,7 +27,7 @@ void initLista(Lista* lista){
 void limpaLista(Lista* lista){
     int erro;
     while(lista->tamanho != 0){
-        retiraInicio(lista, erro);
+        retiraInicio(lista, &erro);
     }
 }
 
@@ -66,14 +66,24 @@ void* getLista(Lista* lista, uint32 posicao, int* erro){
     for(i=0;i<lista->tamanho;i++){
         if(i == posicao){
             saida = no->valor;
-            no->anterior->prox = no->prox;
-            no->prox->anterior = no->anterior;
-            *erro = freeNode(no);
+            if(no->anterior != NULL){
+                no->anterior->prox = no->prox;
+            }else{
+                lista->inicio=no->prox;
+            }
+            if(no->prox != NULL) {
+                no->prox->anterior = no->anterior;
+            }else{
+                lista->fim = no->anterior;
+            }
+            *erro = 0;
+            freeNode(no);
             return saida;
         }
-        no=no->prox;
+        no = no->prox;
     }
     *erro = 1;
+    freeNode(no);
     return NULL;
 }
 

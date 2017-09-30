@@ -6,7 +6,7 @@
 	"Types.h"
 	<stdlib.h>
 
-1506727646 c:\users\bruno\desktop\aulas\alg1\t1\git\types.h
+1506760656 c:\users\bruno\desktop\aulas\alg1\t1\git\types.h
 
 1506721296 source:c:\users\bruno\desktop\aulas\alg1\t1\git\allocationsstatic.c
 	"AllocationsStatic.h"
@@ -18,14 +18,15 @@
 	<stdlib.h>
 	"Types.h"
 
-1506749635 source:c:\users\bruno\desktop\aulas\alg1\t1\git\aluno.c
+1506761333 source:c:\users\bruno\desktop\aulas\alg1\t1\git\aluno.c
 	"Aluno.h"
 
-1506754181 c:\users\bruno\desktop\aulas\alg1\t1\git\aluno.h
+1506759687 c:\users\bruno\desktop\aulas\alg1\t1\git\aluno.h
 	"Lista.h"
 	"Livro.h"
 	<string.h>
 	<stdio.h>
+	<ctype.h>
 
 1506749732 c:\users\bruno\desktop\aulas\alg1\t1\git\lista.h
 	"AllocationsStatic.h"
@@ -34,15 +35,15 @@
 1506702627 source:c:\users\bruno\desktop\aulas\alg1\t1\git\banco.c
 	"Banco.h"
 
-1506749749 source:c:\users\bruno\desktop\aulas\alg1\t1\git\lista.c
+1506761260 source:c:\users\bruno\desktop\aulas\alg1\t1\git\lista.c
 	"Lista.h"
 
-1506748510 source:c:\users\bruno\desktop\aulas\alg1\t1\git\livro.c
+1506760656 source:c:\users\bruno\desktop\aulas\alg1\t1\git\livro.c
 	"Livro.h"
 
-1506749583 c:\users\bruno\desktop\aulas\alg1\t1\git\livro.h
+1506761785 c:\users\bruno\desktop\aulas\alg1\t1\git\livro.h
 	"Aluno.h"
 
-1506733323 source:c:\users\bruno\desktop\aulas\alg1\t1\git\main.c
+1506756025 source:c:\users\bruno\desktop\aulas\alg1\t1\git\main.c
 	"Livro.h"
 

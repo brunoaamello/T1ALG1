@@ -12,14 +12,7 @@ int main(){
     pushLista(&alunos, alunoTeste);
     alunoTeste = novoAluno("PersonaZ", "+55123241512", "z@gmail.com", 3373238, &erro);
     pushLista(&alunos, alunoTeste);
-    alunoTeste = findAluno_N(&alunos, 3373238, &erro);
-    printAlunoInfo(alunoTeste);
-    alunoTeste = popLista(&alunos,&erro);
-    printAlunoInfo(alunoTeste);
-    alunoTeste = popLista(&alunos,&erro);
-    printAlunoInfo(alunoTeste);
-    alunoTeste = popLista(&alunos,&erro);
-    printAlunoInfo(alunoTeste);
-    printf("\n\nSizeof(NodeBank) = %u\nSizeof(Node) = %u\n", sizeof(struct NodeBank), sizeof(Node));
+    findAluno_S(&alunos, "Bruno");
+
     return 0;
 }
