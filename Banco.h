@@ -2,26 +2,27 @@
 #define BANCO_H_INCLUDED
 
 #define T_ALUNOS 150
-#define T_LIVROS 1000
+#define T_TXT 4500
+#define T_LIVROS 1500
 #define T_NODES 5000
 #define T_MSG 200
 
 #include <stdlib.h>
 #include "Types.h"
 
-typedef struct NodeBank{
+struct NodeBank{
     uint32 elems, prim_vazio;
     Node nodes[T_NODES];
 };
-typedef struct AlunoBanco{
+struct AlunoBanco{
     uint32 elems, prim_vazio;
     Aluno alunos[T_ALUNOS];
 };
-typedef struct MensagensBanco{
+struct MensagensBanco{
     uint32 elems, prim_vazio;
-    char mensagens[30*T_ALUNOS][T_MSG];
+    char mensagens[T_TXT][T_MSG];
 };
-typedef struct LivroBanco{
+struct LivroBanco{
     uint32 elems, prim_vazio;
     Livro livros[T_LIVROS];
 };
@@ -36,6 +37,7 @@ Banco* global_mainBank;
 
 int initBanco(Banco*);
 Banco* getBanco();
+int getIndex(uint32);
 
 
 

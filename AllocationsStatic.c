@@ -78,3 +78,48 @@ char* getMensagem(){
     }
     return intermediate;
 }
+
+int freeNode(Node* no){
+    no->valor=NULL;
+    int index = getIndex((uint32)no);
+    if(index == -1){
+        return 1;
+    }
+    if(getBanco()->nodes.prim_vazio > index){
+        getBanco()->nodes.prim_vazio = index;
+    }
+    return 0;
+}
+int freeAluno(Aluno* aluno){
+    aluno->numusp=0;
+    int index = getIndex((uint32)aluno);
+    if(index == -1){
+        return 1;
+    }
+    if(getBanco()->alunos.prim_vazio > index){
+        getBanco()->alunos.prim_vazio = index;
+    }
+    return 0;
+}
+int freeLivro(Livro* livro){
+    livro->isbn=0;
+    int index = getIndex((uint32)livro);
+    if(index == -1){
+        return 1;
+    }
+    if(getBanco()->livros.prim_vazio > index){
+        getBanco()->livros.prim_vazio = index;
+    }
+    return 0;
+}
+int freeMensagem(char* msg){
+    msg[0]='\0';
+    int index = getIndex((uint32)msg);
+    if(index == -1){
+        return 1;
+    }
+    if(getBanco()->mensagens.prim_vazio > index){
+        getBanco()->mensagens.prim_vazio = index;
+    }
+    return 0;
+}

@@ -4,16 +4,16 @@
 	<string.h>
 	<stdlib.h>
 
-1506627775 source:c:\users\bruno\desktop\aulas\alg1\t1\git\allocationsstatic.c
+1506721296 source:c:\users\bruno\desktop\aulas\alg1\t1\git\allocationsstatic.c
 	"AllocationsStatic.h"
 
-1506627085 c:\users\bruno\desktop\aulas\alg1\t1\git\allocationsstatic.h
+1506700832 c:\users\bruno\desktop\aulas\alg1\t1\git\allocationsstatic.h
 	"Banco.h"
 
-1506629792 source:c:\users\bruno\desktop\aulas\alg1\t1\git\aluno.c
+1506731901 source:c:\users\bruno\desktop\aulas\alg1\t1\git\aluno.c
 	"Aluno.h"
 
-1506629792 c:\users\bruno\desktop\aulas\alg1\t1\git\aluno.h
+1506733323 c:\users\bruno\desktop\aulas\alg1\t1\git\aluno.h
 	"Lista.h"
 	<string.h>
 
@@ -27,35 +27,35 @@
 	"AllocationsStatic.h"
 	"AllocationsDyn.h"
 
-1506629797 c:\users\bruno\desktop\aulas\alg1\t1\git\lista.h
+1506732326 c:\users\bruno\desktop\aulas\alg1\t1\git\lista.h
 	"AllocationsStatic.h"
 	"AllocationsDyn.h"
 
 1506553295 c:\users\bruno\desktop\aulas\alg1\t1\git\livro.h
 	"Aluno.h"
 
-1506627085 c:\users\bruno\desktop\aulas\alg1\t1\git\allocationsdyn.h
+1506700832 c:\users\bruno\desktop\aulas\alg1\t1\git\allocationsdyn.h
 	"Types.h"
 	<stdlib.h>
 
-1506625226 source:c:\users\bruno\desktop\aulas\alg1\t1\git\banco.c
+1506702627 source:c:\users\bruno\desktop\aulas\alg1\t1\git\banco.c
 	"Banco.h"
 
-1506629792 c:\users\bruno\desktop\aulas\alg1\t1\git\banco.h
+1506727828 c:\users\bruno\desktop\aulas\alg1\t1\git\banco.h
 	<stdlib.h>
 	"Types.h"
 
-1506554007 source:c:\users\bruno\desktop\aulas\alg1\t1\git\lista.c
+1506732315 source:c:\users\bruno\desktop\aulas\alg1\t1\git\lista.c
 	"Lista.h"
 
 1506443696 source:c:\users\bruno\desktop\aulas\alg1\t1\git\livro.c
 	"Livro.h"
 
-1506627946 source:c:\users\bruno\desktop\aulas\alg1\t1\git\allocationsdyn.c
+1506721296 source:c:\users\bruno\desktop\aulas\alg1\t1\git\allocationsdyn.c
 	"AllocationsDyn.h"
 
-1506617250 source:c:\users\bruno\desktop\aulas\alg1\t1\git\main.c
+1506732423 source:c:\users\bruno\desktop\aulas\alg1\t1\git\main.c
 	"Livro.h"
 
-1506633589 c:\users\bruno\desktop\aulas\alg1\t1\git\types.h
+1506727646 c:\users\bruno\desktop\aulas\alg1\t1\git\types.h
 

@@ -6,19 +6,20 @@
 
 //  FILA
 int entraLista(Lista* lista, void* elemento);
-int saiLista(Lista* lista, void* saida);
+void* saiLista(Lista* lista, int* erro);
 
 //  PILHA
 int pushLista(Lista* lista, void* elemento);
-int popLista(Lista* lista, void* saida);
+void* popLista(Lista* lista, int* erro);
 
 //  LISTA
-int atLista(void* saida, Lista* lista, uint32 posicao);
-int getLista(void* saida, Lista* lista, uint32 posicao);
+void initLista(Lista* lista);
+void* atLista(Lista* lista, uint32 posicao, int* erro);
+void* getLista(Lista* lista, uint32 posicao, int* erro);
 int estaVazia(Lista* lista);
 int insereFim(Lista* lista, void* elemento);
 int insereInicio(Lista* lista, void* elemento);
-int retiraFim(Lista* lista, void* saida);
-int retiraInicio(Lista* lista, void* saida);
+void* retiraFim(Lista* lista, int* erro);
+void* retiraInicio(Lista* lista, int* erro);
 
 #endif // LISTA_H_INCLUDED

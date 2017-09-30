@@ -24,10 +24,10 @@ typedef struct {
 
 //##############ALUNO##################
 typedef struct Aluno{
-    char nome[50], telefone[16], email[30];
+    char nome[100], telefone[25], email[100];
     uint32 numusp;
-    Lista* livros;
-    Lista* mensagensPilha;
+    Lista livros;
+    Lista mensagensPilha;
 }Aluno;
 //######################################
 
@@ -36,7 +36,7 @@ typedef struct {
     char titulo[50], autor[50], editora[30];
     uint64 isbn;
     int ano, edicao, copias, disponiveis;
-    Lista* fila;
+    Lista fila;
 }Livro;
 //######################################
 

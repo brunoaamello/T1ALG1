@@ -9,6 +9,9 @@ Node*        getNode();
 Aluno*       getAluno();
 Livro*         getLivro();
 char*          getMensagem();
-
+int                 freeNode(Node*);
+int                 freeAluno(Aluno*);
+int                 freeLivro(Livro*);
+int                 freeMensagem(char*);
 
 #endif // ALLOCATIONSDYN_H_INCLUDED

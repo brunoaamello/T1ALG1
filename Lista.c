@@ -1,16 +1,74 @@
 #include "Lista.h"
 
 //  FILA
-int entraLista(Lista* lista, void* elemento);
-int saiLista(Lista* lista, void* saida);
+int entraLista(Lista* lista, void* elemento){
+    return insereInicio(lista, elemento);
+}
+void* saiLista(Lista* lista, int* erro){
+    return retiraFim(lista, erro);
+}
 
 //  PILHA
-int pushLista(Lista* lista, void* elemento);
-int popLista(Lista* lista, void* saida);
+int pushLista(Lista* lista, void* elemento){
+    return insereInicio(lista, elemento);
+}
+void* popLista(Lista* lista, int* erro){
+    return retiraInicio(lista, erro);
+}
 
 //  LISTA
-int atLista(void* saida, Lista* lista, uint32 posicao);
-int getLista(void* saida, Lista* lista, uint32 posicao);
+
+void initLista(Lista* lista){
+    lista->fim=NULL;
+    lista->inicio=NULL;
+    lista->tamanho=0;
+}
+
+void* atLista(Lista* lista, uint32 posicao, int* erro){
+    void* saida;
+    if(posicao >= lista->tamanho){
+        *erro = 1;
+        return NULL;
+    }
+    Node* no = getNode();
+    no->valor = lista->inicio->valor;
+    no->prox = lista->inicio->prox;
+    uint32 i;
+    for(i=0;i<lista->tamanho;i++){
+        if(i == posicao){
+            *erro  = 0;
+            saida = no->valor;
+            freeNode(no);
+            return saida;
+        }
+        no->valor=no->prox->valor;
+        no->prox=no->prox->prox;
+    }
+    freeNode(no);
+    *erro = 1;
+    return NULL;
+}
+void* getLista(Lista* lista, uint32 posicao, int* erro){
+    void* saida;
+    if(posicao >= lista->tamanho){
+        *erro = 1;
+        return NULL;
+    }
+    Node* no = lista->inicio;
+    uint32 i;
+    for(i=0;i<lista->tamanho;i++){
+        if(i == posicao){
+            saida = no->valor;
+            no->anterior->prox = no->prox;
+            no->prox->anterior = no->anterior;
+            *erro = freeNode(no);
+            return saida;
+        }
+        no=no->prox;
+    }
+    *erro = 1;
+    return NULL;
+}
 
 
 int estaVazia(Lista* lista){
@@ -45,7 +103,6 @@ int insereInicio(Lista* lista, void* elemento){
     if(no == NULL){
         return 0;
     }
-    lista->tamanho++;
     no->anterior = NULL;
     no->valor = elemento;
     if(lista->tamanho == 0){
@@ -57,18 +114,42 @@ int insereInicio(Lista* lista, void* elemento){
         lista->inicio->anterior = no;
         lista->inicio = no;
     }
+    lista->tamanho++;
     return 1;
 }
 
-int retiraFim(Lista* lista, void* saida){
+void* retiraFim(Lista* lista, int* erro){
+    Node* no;
+    void* saida;
     if(lista->tamanho == 0){
-        return 0;
+        *erro = 1;
+        return NULL;
     }
     lista->tamanho--;
-    saida = lista->fim;
+    no = lista->fim;
     if(lista->inicio == lista->fim){
         lista->inicio = NULL;
     }
     lista->fim = lista->fim->anterior;
+    saida = no->valor;
+    *erro = freeNode(no);
+    return saida;
 }
-int retiraInicio(Lista* lista, void* saida);
+
+void* retiraInicio(Lista* lista, int* erro){
+    Node* no;
+    void* saida;
+    if(lista->tamanho == 0){
+        *erro = 1;
+        return NULL;
+    }
+    lista->tamanho--;
+    no = lista->inicio;
+    if(lista->inicio == lista->fim){
+        lista->fim = NULL;
+    }
+    lista->inicio = lista->inicio->prox;
+    saida = no->valor;
+    *erro = freeNode(no);
+    return saida;
+}

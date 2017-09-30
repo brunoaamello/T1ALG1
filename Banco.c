@@ -11,7 +11,7 @@ int initBanco(Banco* meuBanco){
     for(i=0; i<T_ALUNOS; i++){
         meuBanco->alunos.alunos[i].numusp = 0;
     }
-    for(i=0; i<30*T_ALUNOS; i++){
+    for(i=0; i<T_TXT; i++){
         meuBanco->mensagens.mensagens[i][0] = '\0';
     }
     meuBanco->nodes.prim_vazio = 0;
@@ -31,4 +31,41 @@ Banco* getBanco(){
         global_mainBank = &newBank;
     }
     return global_mainBank;
+}
+
+int getIndex(uint32 address){
+    uint32 info = 2*sizeof(uint32);
+    uint32 nodes = sizeof(Node)*T_NODES;
+    uint32 alunos = sizeof(Aluno)*T_ALUNOS;
+    uint32 mensagens = sizeof(char)*T_MSG*T_TXT;
+    uint32 livros = sizeof(Livro)*T_LIVROS;
+    if(address < global_mainBank+info){
+        return -1;
+    }else if(address < global_mainBank+info+nodes){
+        address-=info;
+        return address%sizeof(Node);
+    }else if(address < global_mainBank+(2*info)+nodes){
+        return -1;
+    }else if(address < global_mainBank+(2*info)+nodes+alunos){
+        address-=2*info;
+        address-=nodes;
+        return address%sizeof(Aluno);
+    }else if(address < global_mainBank+(3*info)+nodes+alunos){
+        return -1;
+    }else if(address < global_mainBank+(3*info)+nodes+alunos+mensagens){
+        address-=3*info;
+        address-=nodes;
+        address-=alunos;
+        return address%(sizeof(char)*T_MSG);
+    }else if(address < global_mainBank+(4*info)+nodes+alunos+mensagens){
+        return -1;
+    }else if(address < global_mainBank+(4*info)+nodes+alunos+mensagens+livros){
+        address-=4*info;
+        address-=nodes;
+        address-=alunos;
+        address-=mensagens;
+        return address%sizeof(Livro);
+    }else{
+        return -1;
+    }
 }
