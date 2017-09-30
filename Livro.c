@@ -95,7 +95,7 @@ int cadastrarLivro(Lista* livros){
     return insereFim(livros, nLi);
 }
 
-void findLivro_ST(Lista* livros, char* titulo){
+void findLivro_ST(Lista* livros, char* titulo, Lista* alunos){
     Lista matches;
     Livro* livro;
     initLista(&matches);
@@ -123,11 +123,11 @@ void findLivro_ST(Lista* livros, char* titulo){
             printf("Por favor digite um valor entre os mostrados\n");
         }
     }while(i<1 || i>matches.tamanho);
-    //operarLivro(livros, atLista(&matches, i-1, &erro));
+    operarLivro(livros, atLista(&matches, i-1, &erro), alunos);
     limpaLista(&matches);
 }
 
-void findLivro_SA(Lista* livros, char* autor){
+void findLivro_SA(Lista* livros, char* autor, Lista* alunos){
     Lista matches;
     Livro* livro;
     initLista(&matches);
@@ -155,13 +155,16 @@ void findLivro_SA(Lista* livros, char* autor){
             printf("Por favor digite um valor entre os mostrados\n");
         }
     }while(i<1 || i>matches.tamanho);
-    //operarLivro(livros, atLista(&matches, i-1, &erro));
+    operarLivro(livros, atLista(&matches, i-1, &erro), alunos);
     limpaLista(&matches);
 }
 
-void operarLivro(Lista* livros, Livro* livro){
+void operarLivro(Lista* livros, Livro* livro, Lista* alunos){
+    uint32 nusp;
+    char* msg;
+    Aluno* emprestador;
     int escolha, erro;
-    printLivroInfoComp(aluno);
+    //printLivroInfoComp(aluno);
     printf("Escolha a operacao que deseja realizar:\n");
     printf("1) Alterar titulo.\n2) Alterar autor.\n3) Alterar editora.\n4) Alterar isbn.\n5) Alterar edicao.\n6) Alterar ano.\n7) Alterar copias.\n8) Emprestar para aluno.\n9) Devolver livro.\n10) Remover livro.\n11) Nada\n");
     do{
@@ -200,21 +203,73 @@ void operarLivro(Lista* livros, Livro* livro){
         printf("Digite a diferenca no numero de copias: ");
         scanf("%d", &escolha);
         if(escolha+livro->disponiveis < 0){
-            printf("Nao ha essa quantidade de livros disponiveis para ser removida.\n")
+            printf("Nao ha essa quantidade de livros disponiveis para ser removida.\n");
         }else{
             livro->copias+=escolha;
             livro->disponiveis+=escolha;
         }
         break;
     case 8:
+        printf("Digite o numero USP do aluno: ");
+        scanf("%u", &nusp);
+        emprestador = findAluno_N(alunos, nusp, &erro);
+        if(erro){
+            printf("Aluno nao encontrado.\n");
+        }else{
+            msg = getMensagem();
+            if(livro->disponiveis == 0){
+                printf("Nao ha livros disponiveis, aluno colocado na fila de espera.\n");
+                entraLista(&livro->fila, emprestador);
+                insereInicio(&emprestador->livros, livro);
+                strcpy(msg, "Colocado na fila para o livro ");
+                strcat(msg, livro->titulo);
+                pushLista(&emprestador->mensagensPilha, msg);
+            } else{
+                livro->disponiveis--;
+                strcpy(msg, "Livro retirado: ");
+                strcat(msg, livro->titulo);
+                pushLista(&emprestador->mensagensPilha, msg);
+                printf("Livro retirado.\n");
+            }
+        }
         break;
     case 9:
+        if(livro->disponiveis == livro->copias){
+            printf("Nao ha livros para se devolver.\n");
+            break;
+        }else{
+            if(livro->fila.tamanho != 0){
+                msg = getMensagem();
+                emprestador = saiLista(&livro->fila, &erro);
+                strcpy(msg, "Livro disponivel para retirada: ");
+                strcat(msg, livro->titulo);
+                pushLista(&emprestador->mensagensPilha, msg);
+                printf("Livro encaminhado para proximo aluno.\n");
+            }else{
+                livro->disponiveis++;
+            }
+        }
         break;
     case 10:
+        removerLivro(livros, livro);
+        printf("Livro removido.\n");
         break;
     case 11:
         break;
     default:
         break;
     }
+}
+
+void removerLivro(Lista* livros, Livro* livro){
+    int i, erro;
+    for(i=0; i<livro->fila.tamanho; i++){
+        removerLivroAluno(livro, atLista(&livro->fila, i, &erro));
+    }
+    for(i=0; i<livros->tamanho; i++){
+        if(atLista(livros, i, &erro) == livro){
+            getLista(livros, i, &erro);
+        }
+    }
+    freeLivro(livro);
 }
