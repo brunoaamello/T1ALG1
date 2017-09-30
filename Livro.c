@@ -49,9 +49,9 @@ void printLivroInfo(Livro* livro){
         printf("Erro na impressao do livro.\n");
         return;
     }
-    printf("Titulo: %s\n %da edicao, %d\n", livro->titulo, livro->edicao, livro->ano);
-    printf("Autor: %s\n", livro->autor);
-    printf("ISBN: %llu\n", livro->isbn);
+    printf("\nTitulo: %s%da edicao, %d\n", livro->titulo, livro->edicao, livro->ano);
+    printf("Autor: %s", livro->autor);
+    printf("ISBN: %llu\n\n", livro->isbn);
 }
 
 int getAlunoPosition(Livro* livro, Aluno* aluno, int* erro){
@@ -72,27 +72,36 @@ int getAlunoPosition(Livro* livro, Aluno* aluno, int* erro){
 
 int cadastrarLivro(Lista* livros){
     int erro, edicao, ano, copias;
+    Livro* nLi;
     uint64 isbn;
     char titulo[100], autor[100], editora[100];
     printf("Digite o titulo do livro: ");
-    scanf("%s", titulo);
+    fflush(stdin);
+    fgets(titulo, 100, stdin);
     printf("Digite o nome do autor: ");
-    scanf("%s", autor);
+    fflush(stdin);
+    fgets(autor, 100, stdin);
     printf("Digite o nome da editora: ");
-    scanf("%s", editora);
+    fflush(stdin);
+    fgets(editora, 100, stdin);
     printf("Digite o ISBN do livro: ");
+    fflush(stdin);
     scanf("%llu", &isbn);
     printf("Digite o ano do livro: ");
+    fflush(stdin);
     scanf("%d", &ano);
     printf("Digite a edicao do livro: ");
+    fflush(stdin);
     scanf("%d", &edicao);
     printf("Digite o numero de copias do livro: ");
+    fflush(stdin);
     scanf("%d", &copias);
-    Livro* nLi = novoLivro(titulo, autor, editora, isbn, ano, edicao, copias, &erro);
+    nLi = novoLivro(titulo, autor, editora, isbn, ano, edicao, copias, &erro);
     if(livros == NULL || erro){
         return 1;
     }
-    return insereFim(livros, nLi);
+    printLivroInfo(nLi);
+    return insereInicio(livros, nLi);
 }
 
 void findLivro_ST(Lista* livros, char* titulo, Lista* alunos){
@@ -112,8 +121,9 @@ void findLivro_ST(Lista* livros, char* titulo, Lista* alunos){
             insereInicio(&matches, atLista(livros, i, &erro));
         }
     }
+
     for(i=0;i<matches.tamanho;i++){
-        printf("Escolha entre as opcoes encontradas: \n\n%d)\n", i+1);
+        printf("\n%d)\n", i+1);
         printLivroInfo(atLista(&matches, i, &erro));
     }
     do{
@@ -131,7 +141,7 @@ void findLivro_SA(Lista* livros, char* autor, Lista* alunos){
     Lista matches;
     Livro* livro;
     initLista(&matches);
-    int i, j, erro, checker;
+    int i, j, erro, checker, escolha;
     for(i=0;i<(livros->tamanho);i++){
         livro = atLista(livros, i, &erro);
         checker=1;
@@ -150,12 +160,12 @@ void findLivro_SA(Lista* livros, char* autor, Lista* alunos){
     }
     do{
         fflush(stdin);
-        scanf("%d", &i);
-        if(i<1 || i>matches.tamanho){
+        scanf("%d", &escolha);
+        if(escolha<1 || escolha>matches.tamanho){
             printf("Por favor digite um valor entre os mostrados\n");
         }
-    }while(i<1 || i>matches.tamanho);
-    operarLivro(livros, atLista(&matches, i-1, &erro), alunos);
+    }while(escolha<1 || escolha>matches.tamanho);
+    operarLivro(livros, atLista(&matches, escolha-1, &erro), alunos);
     limpaLista(&matches);
 }
 
@@ -164,6 +174,7 @@ void operarLivro(Lista* livros, Livro* livro, Lista* alunos){
     char* msg;
     Aluno* emprestador;
     int escolha, erro;
+    char texto[100];
     //printLivroInfoComp(aluno);
     printf("Escolha a operacao que deseja realizar:\n");
     printf("1) Alterar titulo.\n2) Alterar autor.\n3) Alterar editora.\n4) Alterar isbn.\n5) Alterar edicao.\n6) Alterar ano.\n7) Alterar copias.\n8) Emprestar para aluno.\n9) Devolver livro.\n10) Remover livro.\n11) Nada\n");
@@ -173,33 +184,43 @@ void operarLivro(Lista* livros, Livro* livro, Lista* alunos){
         if(escolha<1 || escolha>11){
             printf("Por favor digite um valor entre os mostrados\n");
         }
-    }while(escolha<1 || escolha>7);
+    }while(escolha<1 || escolha>11);
     switch(escolha){
     case 1:
         printf("Digite o novo titulo: ");
-        scanf("%s", livro->titulo);
+        fflush(stdin);
+        fgets(texto, 100, stdin);
+        strcpy(livro->titulo, texto);
         break;
     case 2:
         printf("Digite o novo autor: ");
-        scanf("%s", livro->autor);
+        fflush(stdin);
+        fgets(texto, 100, stdin);
+        strcpy(livro->autor, texto);
         break;
     case 3:
         printf("Digite a nova editora: ");
-        scanf("%s", livro->editora);
+        fflush(stdin);
+        fgets(texto, 100, stdin);
+        strcpy(livro->editora, texto);
         break;
     case 4:
         printf("Digite o novo ISBN: ");
+        fflush(stdin);
         scanf("%llu", &livro->isbn);
         break;
     case 5:
         printf("Digite a nova edicao: ");
+        fflush(stdin);
         scanf("%d", &livro->edicao);
         break;
     case 6:
        printf("Digite o novo ano: ");
+       fflush(stdin);
         scanf("%d", &livro->ano);
         break;
     case 7:
+        fflush(stdin);
         printf("Digite a diferenca no numero de copias: ");
         scanf("%d", &escolha);
         if(escolha+livro->disponiveis < 0){

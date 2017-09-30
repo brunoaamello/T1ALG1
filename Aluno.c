@@ -21,21 +21,14 @@ Aluno* findAluno_N(Lista* alunos, uint32 numusp, int* erro){
         *erro = 1;
         return NULL;
     }
-    Node* no = getNode();
-    no->valor = alunos->inicio->valor;
-    no->prox = alunos->inicio->prox;
     uint32 i;
     for(i=0;i<alunos->tamanho;i++){
-        if(((Aluno*)no->valor)->numusp == numusp){
+        if(((Aluno*)atLista(alunos, i, erro))->numusp == numusp){
             *erro  = 0;
-            saida = no->valor;
-            freeNode(no);
+            saida = atLista(alunos, i, erro);
             return saida;
         }
-        no->valor=no->prox->valor;
-        no->prox=no->prox->prox;
     }
-    freeNode(no);
     *erro = 1;
     return NULL;
 }
@@ -45,9 +38,9 @@ void printAlunoBaseInfo(Aluno* aluno){
         printf("\nErro na impressao de aluno.\n");
         return;
     }
-    printf("\nNome:      %s\n", aluno->nome);
+    printf("\nNome:      %s", aluno->nome);
     printf("NUSP:      %u\n", aluno->numusp);
-    printf("Email:     %s\n", aluno->email);
+    printf("Email:     %s", aluno->email);
     printf("Telefone:  %s\n", aluno->telefone);
 }
 
@@ -67,7 +60,7 @@ void printAlunoInfo(Aluno* aluno){
         return;
     }
     if(aluno->livros.tamanho == 0){
-        printf("O Aluno nao esta em nenhuma lista de espera.\n");
+        printf("\nO Aluno nao esta em nenhuma lista de espera.\n\n");
         return;
     }
     int i, erro;
@@ -112,10 +105,11 @@ void findAluno_S(Lista* alunos, char* nome){
 }
 
 void operarAluno(Lista* alunos, Aluno* aluno){
-    int escolha, erro;
+    char texto[100];
+    int escolha, escolha_2, erro;
     printAlunoInfo(aluno);
     printf("Escolha a operacao que deseja realizar:\n");
-    printf("1) Alterar nome.\n2) Alterar email.\n3) Alterar numero USP.\n4) Alterar telefone.\n5) Remover aluno.\n6) Remover de uma lista de espera.\n7)Nada.\n");
+    printf("1) Alterar nome.\n2) Alterar email.\n3) Alterar numero USP.\n4) Alterar telefone.\n5) Remover aluno.\n6) Remover de uma lista de espera.\n7) Nada.\n");
     do{
         fflush(stdin);
         scanf("%d", &escolha);
@@ -126,19 +120,26 @@ void operarAluno(Lista* alunos, Aluno* aluno){
     switch(escolha){
     case 1:
         printf("Digite o novo nome: ");
-        scanf("%s", aluno->nome);
+        fflush(stdin);
+        fgets(texto, 100, stdin);
+        strcpy(aluno->nome, texto);
         break;
     case 2:
         printf("Digite o novo email: ");
-        scanf("%s", aluno->email);
+        fflush(stdin);
+        fgets(texto, 100, stdin);
+        strcpy(aluno->email, texto);
         break;
     case 3:
         printf("Digite o novo numero USP: ");
+        fflush(stdin);
         scanf("%u", &aluno->numusp);
         break;
     case 4:
         printf("Digite o novo telefone: ");
-        scanf("%s", aluno->telefone);
+        fflush(stdin);
+        fgets(texto, 25, stdin);
+        strcpy(aluno->telefone, texto);
         break;
     case 5:
         removerAluno(alunos, aluno);
@@ -151,11 +152,11 @@ void operarAluno(Lista* alunos, Aluno* aluno){
         printf("Digite o numero do livro: ");
         do{
             fflush(stdin);
-            scanf("%d", &escolha);
-            if(escolha<0 || escolha>aluno->livros.tamanho-1){
+            scanf("%d", &escolha_2);
+            if(escolha_2<0 || escolha_2>aluno->livros.tamanho-1){
                 printf("Escolha um valor entre os mostrados.\n");
             }
-        }while(escolha<1 || escolha>aluno->livros.tamanho);
+        }while(escolha_2<1 || escolha_2>aluno->livros.tamanho);
         removerLivroAluno(atLista(&aluno->livros, escolha-1, &erro), aluno);
         break;
     case 7:
@@ -213,21 +214,26 @@ void printAlunoMensagens(Aluno* aluno){
 }
 
 int cadastrarAluno(Lista* alunos){
-    int erro;
+    int erro = 0;
     uint32 nusp;
     char nome[100], telefone[25], email[100];
     printf("Digite o nome do aluno: ");
-    scanf("%s", nome);
+    fflush(stdin);
+    fgets(nome, 100, stdin);
     printf("Digite o telefone do aluno: ");
-    scanf("%s", telefone);
+    fflush(stdin);
+    fgets(telefone, 25, stdin);
     printf("Digite o email do aluno: ");
-    scanf("%s", email);
+    fflush(stdin);
+    fgets(email, 100, stdin);
     printf("Digite o numero USP do aluno: ");
+    fflush(stdin);
     scanf("%u", &nusp);
     Aluno* nAl = novoAluno(nome, telefone, email, nusp, &erro);
     if(alunos == NULL || erro){
         return 1;
     }
-    return insereFim(alunos, nAl);
+    printAlunoBaseInfo(nAl);
+    return insereInicio(alunos, nAl);
 }
 

@@ -44,6 +44,7 @@ int main(){
                     printf("ISBN nao encontrado.\n");
                     break;
                 }else{
+                    printLivroInfo(livro);
                     operarLivro(&livros, livro, &alunos);
                     break;
                 }
@@ -100,7 +101,6 @@ int main(){
             break;
         }
     }while(escolha_0 != 5);
-
     limpaLista(&alunos);
     limpaLista(&livros);
 
