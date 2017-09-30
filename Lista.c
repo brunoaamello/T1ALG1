@@ -24,6 +24,13 @@ void initLista(Lista* lista){
     lista->tamanho=0;
 }
 
+void limpaLista(Lista* lista){
+    int erro;
+    while(lista->tamanho != 0){
+        retiraInicio(lista, erro);
+    }
+}
+
 void* atLista(Lista* lista, uint32 posicao, int* erro){
     void* saida;
     if(posicao >= lista->tamanho){

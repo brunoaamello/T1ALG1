@@ -14,6 +14,7 @@ void* popLista(Lista* lista, int* erro);
 
 //  LISTA
 void initLista(Lista* lista);
+void limpaLista(Lista* lista);
 void* atLista(Lista* lista, uint32 posicao, int* erro);
 void* getLista(Lista* lista, uint32 posicao, int* erro);
 int estaVazia(Lista* lista);
