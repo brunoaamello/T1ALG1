@@ -154,8 +154,9 @@ void findLivro_SA(Lista* livros, char* autor, Lista* alunos){
             insereInicio(&matches, atLista(livros, i, &erro));
         }
     }
+    printf("Escolha entre as opcoes encontradas: \n");
     for(i=0;i<matches.tamanho;i++){
-        printf("Escolha entre as opcoes encontradas: \n\n%d)\n", i+1);
+        printf("\n%d)\n", i+1);
         printLivroInfo(atLista(&matches, i, &erro));
     }
     do{

@@ -89,8 +89,9 @@ void findAluno_S(Lista* alunos, char* nome){
             insereInicio(&matches, atLista(alunos, i, &erro));
         }
     }
+    printf("Escolha entre as opcoes encontradas: \n");
     for(i=0;i<matches.tamanho;i++){
-        printf("Escolha entre as opcoes encontradas: \n\n%d)\n", i+1);
+        printf("\n%d)\n", i+1);
         printAlunoBaseInfo(atLista(&matches, i, &erro));
     }
     do{
