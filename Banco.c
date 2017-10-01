@@ -39,32 +39,37 @@ int getIndex(uint32 address){
     uint32 alunos = sizeof(Aluno)*T_ALUNOS;
     uint32 mensagens = sizeof(char)*T_MSG*T_TXT;
     uint32 livros = sizeof(Livro)*T_LIVROS;
-    if(address < global_mainBank+info){
+    uint32 bank = (uint32) global_mainBank;
+    if(address < bank+info){
         return -1;
-    }else if(address < global_mainBank+info+nodes){
+    }else if(address < bank+info+nodes){
         address-=info;
-        return address%sizeof(Node);
-    }else if(address < global_mainBank+(2*info)+nodes){
+        address-=bank;
+        return address/sizeof(Node);
+    }else if(address < bank+(2*info)+nodes){
         return -1;
-    }else if(address < global_mainBank+(2*info)+nodes+alunos){
+    }else if(address < bank+(2*info)+nodes+alunos){
+        address-=bank;
         address-=2*info;
         address-=nodes;
-        return address%sizeof(Aluno);
-    }else if(address < global_mainBank+(3*info)+nodes+alunos){
+        return address/sizeof(Aluno);
+    }else if(address < bank+(3*info)+nodes+alunos){
         return -1;
-    }else if(address < global_mainBank+(3*info)+nodes+alunos+mensagens){
+    }else if(address < bank+(3*info)+nodes+alunos+mensagens){
+        address-=bank;
         address-=3*info;
         address-=nodes;
         address-=alunos;
-        return address%(sizeof(char)*T_MSG);
-    }else if(address < global_mainBank+(4*info)+nodes+alunos+mensagens){
+        return address/(sizeof(char)*T_MSG);
+    }else if(address < bank+(4*info)+nodes+alunos+mensagens){
         return -1;
-    }else if(address < global_mainBank+(4*info)+nodes+alunos+mensagens+livros){
+    }else if(address < bank+(4*info)+nodes+alunos+mensagens+livros){
+        address-=bank;
         address-=4*info;
         address-=nodes;
         address-=alunos;
         address-=mensagens;
-        return address%sizeof(Livro);
+        return address/sizeof(Livro);
     }else{
         return -1;
     }
