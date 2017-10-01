@@ -188,40 +188,40 @@ void operarLivro(Lista* livros, Livro* livro, Lista* alunos){
         }
     }while(escolha<1 || escolha>11);
     switch(escolha){
-    case 1:
+    case 1:     //TROCA DE TITULO
         printf("Digite o novo titulo: ");
         fflush(stdin);
         fgets(texto, 100, stdin);
         strcpy(livro->titulo, texto);
         break;
-    case 2:
+    case 2:     //TROCA DE AUTOR
         printf("Digite o novo autor: ");
         fflush(stdin);
         fgets(texto, 100, stdin);
         strcpy(livro->autor, texto);
         break;
-    case 3:
+    case 3:     //TROCA DE EDITORA
         printf("Digite a nova editora: ");
         fflush(stdin);
         fgets(texto, 100, stdin);
         strcpy(livro->editora, texto);
         break;
-    case 4:
+    case 4:     //TROCA DE ISBN
         printf("Digite o novo ISBN: ");
         fflush(stdin);
         scanf("%llu", &livro->isbn);
         break;
-    case 5:
+    case 5:     //TROCA DE EDICAO
         printf("Digite a nova edicao: ");
         fflush(stdin);
         scanf("%d", &livro->edicao);
         break;
-    case 6:
+    case 6:     //TROCA DE ANO
        printf("Digite o novo ano: ");
        fflush(stdin);
         scanf("%d", &livro->ano);
         break;
-    case 7:
+    case 7:     //TROCA DO NUMERO DE COPIAS
         fflush(stdin);
         printf("Digite a diferenca no numero de copias: ");
         scanf("%d", &escolha);
@@ -232,7 +232,7 @@ void operarLivro(Lista* livros, Livro* livro, Lista* alunos){
             livro->disponiveis+=escolha;
         }
         break;
-    case 8:
+    case 8:     //EMPRESTAR LIVRO
         printf("Digite o numero USP do aluno: ");
         scanf("%u", &nusp);
         emprestador = findAluno_N(alunos, nusp, &erro);
@@ -256,7 +256,7 @@ void operarLivro(Lista* livros, Livro* livro, Lista* alunos){
             }
         }
         break;
-    case 9:
+    case 9:     //DEVOLVER LIVRO
         if(livro->disponiveis == livro->copias){
             printf("Nao ha livros para se devolver.\n");
             break;
@@ -273,11 +273,11 @@ void operarLivro(Lista* livros, Livro* livro, Lista* alunos){
             }
         }
         break;
-    case 10:
+    case 10:        //REMOVER LIVRO
         removerLivro(livros, livro);
         printf("Livro removido.\n");
         break;
-    case 11:
+    case 11:        //CANCELAR
         break;
     default:
         break;

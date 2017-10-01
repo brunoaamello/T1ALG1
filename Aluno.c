@@ -119,33 +119,33 @@ void operarAluno(Lista* alunos, Aluno* aluno){
         }
     }while(escolha<1 || escolha>8);
     switch(escolha){
-    case 1:
+    case 1:     //TROCAR NOME
         printf("Digite o novo nome: ");
         fflush(stdin);
         fgets(texto, 100, stdin);
         strcpy(aluno->nome, texto);
         break;
-    case 2:
+    case 2:     //TROCAR EMAIL
         printf("Digite o novo email: ");
         fflush(stdin);
         fgets(texto, 100, stdin);
         strcpy(aluno->email, texto);
         break;
-    case 3:
+    case 3:     //TROCAR NUMERO USP
         printf("Digite o novo numero USP: ");
         fflush(stdin);
         scanf("%u", &aluno->numusp);
         break;
-    case 4:
+    case 4:     //TROCAR TELEFONE
         printf("Digite o novo telefone: ");
         fflush(stdin);
         fgets(texto, 25, stdin);
         strcpy(aluno->telefone, texto);
         break;
-    case 5:
+    case 5:     //REMOVER ALUNO
         removerAluno(alunos, aluno);
         break;
-    case 6:
+    case 6:     //REMOVER LIVRO RESERVADO
         if(aluno->livros.tamanho == 0){
             printf("Nao ha livros a serem removidos.\n");
             break;
@@ -160,7 +160,7 @@ void operarAluno(Lista* alunos, Aluno* aluno){
         }while(escolha_2<1 || escolha_2>aluno->livros.tamanho);
         removerLivroAluno(atLista(&aluno->livros, escolha-1, &erro), aluno);
         break;
-    case 7:
+    case 7:     //LER MENSAGENS
         i=1;
         while(aluno->mensagensPilha.tamanho>0){
             strcpy(texto, popLista(&aluno->mensagensPilha, &erro));
@@ -169,7 +169,7 @@ void operarAluno(Lista* alunos, Aluno* aluno){
         }
         printf("Fim da impressao das mensagens.\n");
         break;
-    case 8:
+    case 8:     //CANCELAR
         break;
     default:
         break;
