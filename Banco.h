@@ -10,22 +10,32 @@
 #include <stdlib.h>
 #include "Types.h"
 
+
+//  BANCO DE NOS
 struct NodeBank{
     uint32 elems, prim_vazio;
     Node nodes[T_NODES];
 };
+
+//  BANCO DE ALUNOS
 struct AlunoBanco{
     uint32 elems, prim_vazio;
     Aluno alunos[T_ALUNOS];
 };
+
+//  BANCO DE MENSAGENS
 struct MensagensBanco{
     uint32 elems, prim_vazio;
     char mensagens[T_TXT][T_MSG];
 };
+
+//  BANCO DE LIVROS
 struct LivroBanco{
     uint32 elems, prim_vazio;
     Livro livros[T_LIVROS];
 };
+
+//  BANCO PRINCIPAL
 typedef struct {
     struct NodeBank nodes;
     struct AlunoBanco alunos;

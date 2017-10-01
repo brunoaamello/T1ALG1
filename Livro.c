@@ -51,7 +51,8 @@ void printLivroInfo(Livro* livro){
     }
     printf("\nTitulo: %s%da edicao, %d\n", livro->titulo, livro->edicao, livro->ano);
     printf("Autor: %s", livro->autor);
-    printf("ISBN: %llu\n\n", livro->isbn);
+    printf("ISBN: %llu", livro->isbn);
+    printf("Disponiveis: %d/%d\n\n", livro->disponiveis, livro->copias);
 }
 
 int getAlunoPosition(Livro* livro, Aluno* aluno, int* erro){

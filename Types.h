@@ -1,20 +1,19 @@
 #ifndef  TYPES_H_INCLUDED
 #define TYPES_H_INCLUDED
 
-typedef unsigned int uint32;
-typedef unsigned long long int uint64;
-
-
-
-
+typedef unsigned int uint32;                        //  INTEIRO DE 32 BITS
+typedef unsigned long long int uint64;      // INTEIRO DE 64 BITS
 
 //##############LISTA###################
+
+//  NO DUPLAMENTE ENCADEADO, RECEBENDO UM PONTEIRO PARA O CONTEUDO, NAO CONTENDO O PRORPIO TIPO ARMAZENADO
 typedef struct Node{
     struct Node*   anterior;
     void*   valor;
     struct Node*   prox;
 }Node;
 
+//  LISTA DE NOS
 typedef struct {
     Node* inicio;
     Node* fim;
