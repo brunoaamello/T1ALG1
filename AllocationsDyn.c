@@ -1,10 +1,22 @@
-#include "AllocationsDyn.h"
 /*
+    TRABALHO 1 -- SSC0502 -- ALGORITMOS E ESTRUTURAS DE DADOS
+    PROFESSOR: Bruno Roberto Nepomuceno Matheus
+    ALUNOS:
+        Bruno Arantes de Achilles Mello     9866490
+        Laura Pereira de Gouveia                  9880200
+*/
+
+#include "AllocationsDyn.h"
+
 void init(){
     printf("Mode set to Dynamic\n");
 }
 Node*        getNode(){
-    return malloc(sizeof(Node));
+    Node* no = malloc(sizeof(Node));
+    no->anterior=NULL;
+    no->prox = NULL;
+    no->valor = NULL;
+    return no;
 }
 Aluno*       getAluno(){
     return (Aluno*) malloc(sizeof(Aluno));
@@ -31,5 +43,3 @@ int freeMensagem(char* msg){
     free(msg);
     return 0;
 }
-
-*/

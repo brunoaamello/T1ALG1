@@ -1,3 +1,11 @@
+/*
+    TRABALHO 1 -- SSC0502 -- ALGORITMOS E ESTRUTURAS DE DADOS
+    PROFESSOR: Bruno Roberto Nepomuceno Matheus
+    ALUNOS:
+        Bruno Arantes de Achilles Mello     9866490
+        Laura Pereira de Gouveia                  9880200
+*/
+
 #include "Lista.h"
 
 //  FILA
@@ -38,7 +46,11 @@ void* atLista(Lista* lista, uint32 posicao, int* erro){
         return NULL;
     }
     Node* no = getNode();
-    no->valor = lista->inicio->valor;
+    if(lista->tamanho != 0){
+            no->valor = lista->inicio->valor;
+    }else{
+            no->valor = NULL;
+    }
     no->prox = lista->inicio->prox;
     uint32 i;
     for(i=0;i<lista->tamanho;i++){

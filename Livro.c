@@ -1,3 +1,11 @@
+/*
+    TRABALHO 1 -- SSC0502 -- ALGORITMOS E ESTRUTURAS DE DADOS
+    PROFESSOR: Bruno Roberto Nepomuceno Matheus
+    ALUNOS:
+        Bruno Arantes de Achilles Mello     9866490
+        Laura Pereira de Gouveia                  9880200
+*/
+
 #include "Livro.h"
 
 Livro* novoLivro(char* titulo, char* autor, char* editora, uint64 isbn, int ano, int edicao, int copias,  int* erro){
@@ -51,7 +59,7 @@ void printLivroInfo(Livro* livro){
     }
     printf("\nTitulo: %s%da edicao, %d\n", livro->titulo, livro->edicao, livro->ano);
     printf("Autor: %s", livro->autor);
-    printf("ISBN: %llu", livro->isbn);
+    printf("ISBN: %llu\n", livro->isbn);
     printf("Disponiveis: %d/%d\n\n", livro->disponiveis, livro->copias);
 }
 

@@ -1,3 +1,11 @@
+/*
+    TRABALHO 1 -- SSC0502 -- ALGORITMOS E ESTRUTURAS DE DADOS
+    PROFESSOR: Bruno Roberto Nepomuceno Matheus
+    ALUNOS:
+        Bruno Arantes de Achilles Mello     9866490
+        Laura Pereira de Gouveia                  9880200
+*/
+
 #include "AllocationsStatic.h"
 
 void init(){

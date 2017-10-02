@@ -1,8 +1,16 @@
+/*
+    TRABALHO 1 -- SSC0502 -- ALGORITMOS E ESTRUTURAS DE DADOS
+    PROFESSOR: Bruno Roberto Nepomuceno Matheus
+    ALUNOS:
+        Bruno Arantes de Achilles Mello     9866490
+        Laura Pereira de Gouveia                  9880200
+*/
+
 #ifndef LISTA_H_INCLUDED
 #define LISTA_H_INCLUDED
 
 #include "AllocationsStatic.h"
-#include "AllocationsDyn.h"
+//#include "AllocationsDyn.h"
 
 //###   FUNCOES BASICAS DE FILA     ###
 //  FUNCAO QUE COLOCA NO FIM DA FILA
